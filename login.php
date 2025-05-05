@@ -9,13 +9,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
 
-    // Attempt to log in
+    
     if ($security->login($username, $password)) {
-        // Redirect to the home page on successful login
+        
         header("Location: PharmacyServer.php?action=home");
         exit();
     } else {
-        // Show an error message if login fails
+      
         $error = "Invalid username or password.";
     }
 }

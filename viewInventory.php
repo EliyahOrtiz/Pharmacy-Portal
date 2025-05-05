@@ -7,13 +7,13 @@
     <h1>Medication Inventory</h1>
 
     <?php 
-    // Display message if it's set in the URL
+    
     $message = $_GET['message'] ?? '';
     if (!empty($message)): ?>
         <p style="color: green;"><?php echo htmlspecialchars($message); ?></p>
     <?php endif; ?>
 
-    <!-- Inventory Table -->
+    
     <table>
         <thead>
             <tr>
@@ -39,7 +39,7 @@
         </tbody>
     </table>
 
-    <!-- Action buttons for navigating to other sections -->
+   
     <div>
         <a href="?action=home">Back to Home</a>
         <a href="?action=addPrescription">Add Prescription</a>

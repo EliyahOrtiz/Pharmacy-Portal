@@ -156,7 +156,7 @@ INSERT INTO Prescriptions (user_id, medications_id, prescribedDate, dosageInstru
 (1, 3, NOW(), 'One capsule after meals', 7, 2);
 
 
-CALL ProcessSale(1, 5);
+CALL ProcessSale(1, 1);
 CALL ProcessSale(2, 2);
 CALL ProcessSale(3, 3);
 

@@ -1,10 +1,10 @@
 <?php
 require_once 'PharmacyDatabase.php';
 
-// Create an instance of the PharmacyDatabase class
+
 $db = new PharmacyDatabase();
 
-// Fetch all prescriptions from the database
+
 $prescriptions = $db->getAllPrescriptions();
 ?>
 
@@ -15,13 +15,13 @@ $prescriptions = $db->getAllPrescriptions();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Prescriptions</title>
     <style>
-        /* Your existing styles */
+      
     </style>
 </head>
 <body>
     <h1>All Prescriptions</h1>
 
-    <!-- Display a success or error message if passed via GET -->
+    
     <?php if (isset($_GET['message'])): ?>
         <div class="message">
             <p style="background-color: #e0f7fa; color: #00796b; padding: 10px; border-radius: 5px;">
@@ -58,14 +58,14 @@ $prescriptions = $db->getAllPrescriptions();
     </tbody>
 </table>
 
-<!-- Action buttons for navigating to other sections -->
+
 <div>
     <a href="?action=home">Back to Home</a>
     <a href="?action=addPrescription">Add Prescription</a>
     <a href="?action=viewPrescriptions">View Prescriptions</a>
 </div>
 
-    <!-- Back to Home Link -->
+    
     <p><a href="?action=home">Back to Home</a></p>
 </body>
 </html>

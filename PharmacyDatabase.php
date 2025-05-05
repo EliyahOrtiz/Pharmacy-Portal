@@ -3,7 +3,7 @@
 class PharmacyDatabase {
     private $host = "localhost";
     private $username = "root";
-    private $password = "Spiderman:nowayhome1"; // Update if needed
+    private $password = "Spiderman:nowayhome1"; 
     private $database = "pharmarcy_portal_db";
     private $port = "3306";
     public $connection;
@@ -20,9 +20,9 @@ class PharmacyDatabase {
         }
     }
 
-    // Add Prescription Method
+    
     public function addPrescription($patientUserName, $medicationId, $dosageInstructions, $quantity) {
-        // Step 1: Find the patient ID using the username
+       
         $stmt = $this->connection->prepare(
             "SELECT user_id FROM Users WHERE userName = ? AND userType = 'patient'"
         );
@@ -33,7 +33,7 @@ class PharmacyDatabase {
         $stmt->close();
     
         if ($patient_id) {
-            // Step 2: Insert the prescription for the patient
+           
             $stmt = $this->connection->prepare(
                 "INSERT INTO Prescriptions (user_id, medications_id, prescribedDate, dosageInstructions, quantity) 
                  VALUES (?, ?, NOW(), ?, ?)"
@@ -52,7 +52,7 @@ class PharmacyDatabase {
         }
     }
 
-    // Get All Prescriptions Method
+   
     public function getAllPrescriptions() {
         $query = "
            SELECT p.prescriptions_id, p.user_id, p.medications_id AS medication_id, m.medicationName, p.dosageInstructions, p.quantity
@@ -63,7 +63,7 @@ class PharmacyDatabase {
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    // Get Medication Inventory View (optional feature)
+   
     public function getMedicationInventoryView() {
         $query = "
             SELECT m.medicationName, m.dosage, m.manufacturer, i.quantityAvailable
@@ -73,19 +73,18 @@ class PharmacyDatabase {
         $result = $this->connection->query($query);
     
         if ($result === false) {
-            die("Query Error: " . $this->connection->error); // Debugging query errors
-        }
+            die("Query Error: " . $this->connection->error); 
     
         $data = $result->fetch_all(MYSQLI_ASSOC);
     
         if (empty($data)) {
-            die("No data returned from the query. Check your database tables."); // Debugging empty results
+            die("No data returned from the query. Check your database tables."); 
         }
     
         return $data;
     }
     public function addUser($userName, $contactInfo, $userType, $password) {
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Hash the password
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT); 
         $stmt = $this->connection->prepare(
             "INSERT INTO Users (userName, contactInfo, userType, password) VALUES (?, ?, ?, ?)"
         );
@@ -99,7 +98,7 @@ class PharmacyDatabase {
         }
     }
 
-    // Get User Details Method
+    
     public function getUserDetails($userId) {
         $stmt = $this->connection->prepare(
             "SELECT * FROM Users WHERE userId = ?"

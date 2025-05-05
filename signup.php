@@ -10,14 +10,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? '';
     $confirmPassword = $_POST['confirm_password'] ?? '';
 
-    // Validate inputs
+   
     if (empty($username) || empty($contactInfo) || empty($userType) || empty($password) || empty($confirmPassword)) {
         $error = "All fields are required.";
     } elseif ($password !== $confirmPassword) {
         $error = "Passwords do not match.";
     } else {
         try {
-            // Add the user to the database
+            
             $db->addUser($username, $contactInfo, $userType, $password);
             header("Location: login.php?message=Account created successfully. Please log in.");
             exit();

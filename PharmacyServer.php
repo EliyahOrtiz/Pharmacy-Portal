@@ -15,7 +15,7 @@ class PharmacyPortal {
     }
 
     public function handleRequest() {
-        $action = $_GET['action'] ?? 'home'; // Retrieve action from the request or default to 'home'
+        $action = $_GET['action'] ?? 'home'; 
         $allowedActions = ['addPrescription', 'viewPrescriptions', 'viewInventory', 'viewUsers', 'home'];
 
         if (!in_array($action, $allowedActions)) {
@@ -25,17 +25,17 @@ class PharmacyPortal {
         if (method_exists($this, $action)) {
             $this->$action();
         } else {
-            // Fallback to home if the method does not exist
+            
             $this->home();
         }
     }
 
-    // Home page
+  
     private function home() {
         include 'templates/home.php';
     }
 
-    // Add prescription logic
+    
     private function addPrescription() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $patientUserName = $_POST['userName'] ?? '';
@@ -60,26 +60,26 @@ class PharmacyPortal {
         }
     }
 
-    // View prescriptions logic
+    
     private function viewPrescriptions() {
         $prescriptions = $this->db->getAllPrescriptions();
         $message = $_GET['message'] ?? '';
         include 'templates/viewPrescriptions.php';
     }
 
-    // View inventory logic
+ 
     private function viewInventory() {
         $inventory = $this->db->getMedicationInventoryView(); 
         include 'templates/viewInventory.php'; 
     }
-    // View users logic
+  
     private function viewUsers() {
         $users = $this->getAllUsers();
         $message = $_GET['message'] ?? '';
         include 'templates/viewUsers.php';
     }
 
-    // Add user logic
+
     private function addUser() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $userName = $_POST['user_name'] ?? '';
@@ -110,10 +110,10 @@ class PharmacyPortal {
     }
 }
 
-// Initialize the PharmacyPortal class
+
 $portal = new PharmacyPortal();
 
-// Pass the database connection to the Security class
+
 $security = new Security($portal->getDb()->connection);
 
 if (!$security->isLoggedIn()) {
@@ -121,6 +121,6 @@ if (!$security->isLoggedIn()) {
     exit();
 }
 
-// Handle the request
+
 $portal->handleRequest();
 ?>
